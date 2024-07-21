@@ -2,6 +2,7 @@ import Post from "./Post";
 import NewPost from "./NewPost";
 import classes from "./PostsList.module.css";
 import { useState } from "react";
+import Modal from "./Modal";
 
 function PostsList() {
   const [enteredInfo, setEnteredInfo] = useState("Test Component");
@@ -17,10 +18,12 @@ function PostsList() {
 
   return (
     <>
-      <NewPost
-        onInfoChange={infoChangeHandler}
-        onNameChange={nameChangeHandler}
-      />
+      <Modal>
+        <NewPost
+          onInfoChange={infoChangeHandler}
+          onNameChange={nameChangeHandler}
+        />
+      </Modal>
       <ul className={classes.posts}>
         <Post name={enteredName} info={enteredInfo} />
         <Post name="Subramanya Prabhu U S" info="Reusable Component" />
