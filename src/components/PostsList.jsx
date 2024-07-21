@@ -23,9 +23,18 @@ function PostsList({ modalIsVisible, onClose }) {
   return (
     <>
       {modalContent}
-      <ul className={classes.posts}>
-        <Post name="Subramanya Prabhu U S" info="Reusable Component" />
-      </ul>
+      {posts.length > 0 ? (
+        <ul className={classes.posts}>
+          {posts.map((post, index) => (
+            <Post key={index} name={post.name} info={post.info} />
+          ))}
+        </ul>
+      ) : (
+        <div style={{ textAlign: "center", color: "white" }}>
+          <h2>There are no posts yet!</h2>
+          <p>Try to add some posts</p>
+        </div>
+      )}
     </>
   );
 }
