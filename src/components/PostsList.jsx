@@ -23,6 +23,7 @@ function PostsList({ modalIsVisible, onClose }) {
         <NewPost
           onInfoChange={infoChangeHandler}
           onNameChange={nameChangeHandler}
+          onCancel={onClose}
         />
       </Modal>
     );

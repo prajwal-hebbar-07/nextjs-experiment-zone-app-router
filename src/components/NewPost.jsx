@@ -1,6 +1,6 @@
 import classes from "./NewPost.module.css";
 
-function NewPost({ onInfoChange, onNameChange }) {
+function NewPost({ onInfoChange, onNameChange, onCancel }) {
   return (
     <form className={classes.form}>
       <p>
@@ -10,6 +10,12 @@ function NewPost({ onInfoChange, onNameChange }) {
       <p>
         <label htmlFor="name">Your Name</label>
         <input type="text" id="name" onChange={onNameChange} required />
+      </p>
+      <p>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+        <button>Submit</button>
       </p>
     </form>
   );
