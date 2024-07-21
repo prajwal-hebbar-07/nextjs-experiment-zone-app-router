@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./NewPost.module.css";
 
-function NewPost({ onCancel }) {
+function NewPost({ onCancel, onAddPost }) {
   const [enteredInfo, setEnteredInfo] = useState("Test Component");
   const [enteredName, setEnteredName] = useState("Prajwal Hebbar A S");
 
@@ -15,11 +15,11 @@ function NewPost({ onCancel }) {
 
   function submitHandler(event) {
     event.preventDefault();
-    const post = {
+    const postData = {
       info: enteredInfo,
       name: enteredName,
     };
-    console.log(post);
+    onAddPost(postData);
     onCancel();
   }
 
