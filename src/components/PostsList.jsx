@@ -4,10 +4,9 @@ import classes from "./PostsList.module.css";
 import { useState } from "react";
 import Modal from "./Modal";
 
-function PostsList() {
+function PostsList({ modalIsVisible, onClose }) {
   const [enteredInfo, setEnteredInfo] = useState("Test Component");
   const [enteredName, setEnteredName] = useState("Prajwal Hebbar A S");
-  const [modalIsVisible, setModalIsVisible] = useState(true);
   let modalContent;
 
   function infoChangeHandler(event) {
@@ -18,13 +17,9 @@ function PostsList() {
     setEnteredName(event.target.value);
   }
 
-  function hideModalHandler() {
-    setModalIsVisible(false);
-  }
-
   if (modalIsVisible) {
     modalContent = (
-      <Modal onClose={hideModalHandler}>
+      <Modal onClose={onClose}>
         <NewPost
           onInfoChange={infoChangeHandler}
           onNameChange={nameChangeHandler}
