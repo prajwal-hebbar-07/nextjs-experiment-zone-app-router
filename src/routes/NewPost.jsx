@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classes from "./NewPost.module.css";
+import Modal from "../components/Modal";
 
 function NewPost({ onCancel, onAddPost }) {
   const [enteredInfo, setEnteredInfo] = useState("Test Component");
@@ -24,22 +25,24 @@ function NewPost({ onCancel, onAddPost }) {
   }
 
   return (
-    <form className={classes.form} onSubmit={submitHandler}>
-      <p>
-        <label htmlFor="info">Info</label>
-        <textarea id="info" rows={3} onChange={infoChangeHandler} required />
-      </p>
-      <p>
-        <label htmlFor="name">Your Name</label>
-        <input type="text" id="name" onChange={nameChangeHandler} required />
-      </p>
-      <p className={classes.actions}>
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-        <button>Submit</button>
-      </p>
-    </form>
+    <Modal>
+      <form className={classes.form} onSubmit={submitHandler}>
+        <p>
+          <label htmlFor="info">Info</label>
+          <textarea id="info" rows={3} onChange={infoChangeHandler} required />
+        </p>
+        <p>
+          <label htmlFor="name">Your Name</label>
+          <input type="text" id="name" onChange={nameChangeHandler} required />
+        </p>
+        <p className={classes.actions}>
+          <button type="button" onClick={onCancel}>
+            Cancel
+          </button>
+          <button>Submit</button>
+        </p>
+      </form>
+    </Modal>
   );
 }
 export default NewPost;

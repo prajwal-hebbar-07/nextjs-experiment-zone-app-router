@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import Post from "./Post";
-import NewPost from "./NewPost";
+import NewPost from "../routes/NewPost";
 import classes from "./PostsList.module.css";
 import Modal from "./Modal";
 
-function PostsList({ modalIsVisible, onClose }) {
+function PostsList({}) {
   const [posts, setPosts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  let modalContent;
 
   useEffect(() => {
     async function fetchPosts() {
@@ -31,17 +30,8 @@ function PostsList({ modalIsVisible, onClose }) {
     setPosts((existingPosts) => [postData, ...existingPosts]);
   }
 
-  if (modalIsVisible) {
-    modalContent = (
-      <Modal onClose={onClose}>
-        <NewPost onCancel={onClose} onAddPost={addPostHandler} />
-      </Modal>
-    );
-  }
-
   return (
     <>
-      {modalContent}
       {!isFetching ? (
         <>
           {posts.length > 0 ? (
