@@ -1,12 +1,22 @@
+import { useState, useEffect } from "react";
 import Post from "./Post";
 import NewPost from "./NewPost";
 import classes from "./PostsList.module.css";
 import Modal from "./Modal";
-import { useState } from "react";
 
 function PostsList({ modalIsVisible, onClose }) {
   const [posts, setPosts] = useState([]);
   let modalContent;
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await fetch("http://localhost:8080/posts");
+      const data = await response.json();
+      setPosts(data.posts);
+      console.log(data.posts);
+    }
+    fetchPosts();
+  }, []);
 
   function addPostHandler(postData) {
     fetch("http://localhost:8080/posts", {
