@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -6,7 +8,7 @@ import curryImg from "@/assets/curry.jpg";
 import dumplingsImg from "@/assets/dumplings.jpg";
 import macncheeseImg from "@/assets/macncheese.jpg";
 import pizzaImg from "@/assets/pizza.jpg";
-import schintzelImg from "@/assets/schintzel.jpg";
+import schnitzelImg from "@/assets/schnitzel.jpg";
 import tomatoSaladImg from "@/assets/tomato-salad.jpg";
 
 import styles from "./image-slideshow.module.css";
@@ -34,7 +36,7 @@ export default function ImageSlideshow() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className={styles.slidshow}>
+    <div className={styles.slideshow}>
       {images.map((image, index) => (
         <Image
           key={index}
