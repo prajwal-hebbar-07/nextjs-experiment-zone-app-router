@@ -1,5 +1,6 @@
 import logoImg from "@/assets/logo.png";
 import Link from "next/link";
+import Image from "next/image";
 
 import styles from "./main-header.module.css";
 
@@ -7,7 +8,8 @@ export default function MainHeader() {
   return (
     <header className={styles.header}>
       <Link href="/" className={styles.logo}>
-        <img src={logoImg.src} alt="A plate with food on it" /> Foodie Website
+        <Image src={logoImg} alt="A plate with food on it" priority /> Foodie
+        Website
       </Link>
 
       <nav className={styles.nav}>
