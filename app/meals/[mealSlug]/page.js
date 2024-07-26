@@ -1,9 +1,16 @@
+import { notFound } from "next/navigation";
 import Image from "next/image";
-import styles from "./page.module.css";
+
 import { getIndividualMeal } from "@/app/_lib/meals";
+
+import styles from "./page.module.css";
 
 export default function MealDetailsPahe({ params }) {
   const meal = getIndividualMeal(params.mealSlug);
+
+  if (!meal) {
+    notFound();
+  }
 
   meal.instructions = meal.instructions.replace(/\n/g, "<br />");
   return (
