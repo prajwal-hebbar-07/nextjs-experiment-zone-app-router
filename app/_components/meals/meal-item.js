@@ -1,6 +1,7 @@
 import Image from "next/image";
-import styles from "./meal-item.module.css";
 import Link from "next/link";
+
+import styles from "./meal-item.module.css";
 
 export default function MealItem({ title, slug, image, summary, creator }) {
   return (

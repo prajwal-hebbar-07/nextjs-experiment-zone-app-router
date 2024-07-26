@@ -1,4 +1,5 @@
 import MainHeader from "./_components/main-header/main-header";
+
 import "./globals.css";
 
 export const metadata = {
