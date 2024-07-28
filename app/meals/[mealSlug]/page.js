@@ -5,6 +5,19 @@ import { getIndividualMeal } from "@/app/_lib/meals";
 
 import styles from "./page.module.css";
 
+export async function generateMetadata({ params }) {
+  const meal = getIndividualMeal(params.mealSlug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function MealDetailsPahe({ params }) {
   const meal = getIndividualMeal(params.mealSlug);
 

@@ -7,6 +7,11 @@ import { getMeals } from "../_lib/meals";
 
 import styles from "./page.module.css";
 
+export const metadata = {
+  title: "All Meals",
+  description: "Collection of all the meals that are added!",
+};
+
 async function MealsComponent() {
   const meals = await getMeals();
 
