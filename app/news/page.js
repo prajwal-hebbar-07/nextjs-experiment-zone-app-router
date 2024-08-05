@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const News = () => {
+export default function News() {
   return (
     <>
       <h2>News Page</h2>
@@ -17,6 +17,4 @@ const News = () => {
       </ul>
     </>
   );
-};
-
-export default News;
+}

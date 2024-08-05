@@ -1,4 +1,4 @@
-const NewsDetials = ({ params }) => {
+export default function ({ params }) {
   const { id } = params;
 
   return (
@@ -7,6 +7,4 @@ const NewsDetials = ({ params }) => {
       <p>{id}</p>
     </div>
   );
-};
-
-export default NewsDetials;
+}
