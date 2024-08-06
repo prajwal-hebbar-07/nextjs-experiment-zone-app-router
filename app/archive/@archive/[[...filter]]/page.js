@@ -30,6 +30,14 @@ export default function FilteredNewsPage({ params }) {
   if (news) {
     newsContent = <NewsList news={news} />;
   }
+
+  if (
+    (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) ||
+    (selectedMonth &&
+      !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
+  ) {
+    throw new Error("Invalid Path");
+  }
   return (
     <>
       <header id="archive-header">
