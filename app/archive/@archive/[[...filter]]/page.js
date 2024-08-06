@@ -1,7 +1,11 @@
-import { getAvailableNewsYears } from "@/app/_lib/news";
 import Link from "next/link";
 
-export default function ArchivePage() {
+import { getAvailableNewsYears, getNewsForYear } from "@/app/_lib/news";
+
+export default function FilteredNewsPage({ params }) {
+  const { filter } = params;
+  console.log(filter);
+
   const links = getAvailableNewsYears();
 
   return (
