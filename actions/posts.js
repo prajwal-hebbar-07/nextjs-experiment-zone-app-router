@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 
 import { storePost } from "@/lib/posts";
+import { uploadImage } from "@/lib/cloudinary";
 
 export async function createPost(prevState, formData) {
   const title = formData.get("title");
@@ -24,8 +25,17 @@ export async function createPost(prevState, formData) {
     return { errors };
   }
 
+  let imageUrl;
+  try {
+    imageUrl = await uploadImage(image);
+  } catch {
+    throw new Error(
+      "Image Upload Failed! Post was not created. Try to create the post again in few minutes!"
+    );
+  }
+
   await storePost({
-    imageUrl: "",
+    imageUrl: imageUrl,
     title,
     content,
     userId: 1,
