@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 
-import { DUMMY_NEWS } from "@/dummy_news";
+import { getNewsItem } from "@/app/_lib/news";
 
-export default function FullScreenImage({ params }) {
+export default async function FullScreenImage({ params }) {
   const { slug } = params;
-  const newsItem = DUMMY_NEWS.find((item) => item.slug === slug);
+  const newsItem = await getNewsItem(slug);
 
   if (!newsItem) {
     notFound();
