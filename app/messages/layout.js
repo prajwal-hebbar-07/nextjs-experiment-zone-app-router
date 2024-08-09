@@ -1,7 +1,7 @@
 export default async function MessagesLayout({ children }) {
-  const response = await fetch('http://localhost:8080/messages', {
+  const response = await fetch("http://localhost:8080/messages", {
     headers: {
-      'X-ID': 'layout',
+      "X-ID": "page",
     },
   });
   const messages = await response.json();
