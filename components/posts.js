@@ -9,7 +9,10 @@ import Image from "next/image";
 
 function Post({ post, action }) {
   function imageLoader(config) {
-    return config.src;
+    const urlStart = config.src.split("upload/")[0];
+    const urlEnd = config.src.split("upload/")[1];
+    const tranformation = `w_250,q_${config.quality}`;
+    return `${urlStart}upload/${tranformation}/${urlEnd}`;
   }
 
   return (
