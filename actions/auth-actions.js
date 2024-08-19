@@ -2,9 +2,9 @@
 
 import { redirect } from "next/navigation";
 
-import { createUser } from "@/lib/users";
-import { hashUserPassword } from "@/lib/hash";
-import { createAuthSession } from "@/lib/auth";
+import { createUser, getUserByEmail } from "@/lib/users";
+import { hashUserPassword, verifyPassword } from "@/lib/hash";
+import { createAuthSession, destroySession } from "@/lib/auth";
 
 export async function signUp(prevData, formData) {
   const email = formData.get("email");
@@ -40,6 +40,42 @@ export async function signUp(prevData, formData) {
     }
     throw error;
   }
-
   redirect("/training");
+}
+
+export async function login(prevData, formData) {
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  const existingUser = getUserByEmail(email);
+
+  if (!existingUser) {
+    return {
+      errors: {
+        email: "Could not authenticate user. Check your credentials!",
+      },
+    };
+  }
+  const isValidPassword = verifyPassword(existingUser.password, password);
+  if (!isValidPassword) {
+    return {
+      errors: {
+        password: "Could not authenticate user. Check your credentials!",
+      },
+    };
+  }
+  await createAuthSession(existingUser.id);
+  redirect("/training");
+}
+
+export async function auth(mode, prevData, formData) {
+  if (mode === "login") {
+    return login(prevData, formData);
+  }
+  return signUp(prevData, formData);
+}
+
+export async function logout() {
+  await destroySession();
+  redirect("/");
 }
